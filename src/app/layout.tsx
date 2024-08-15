@@ -1,5 +1,6 @@
 import { Footer } from "app/Components/shared/Footer";
 import { Header } from "app/Components/shared/Header/Header";
+import "app/sass/globals.sass";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
