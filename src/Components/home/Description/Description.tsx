@@ -9,6 +9,8 @@ const Description = () => {
         alt="products marketplace"
         width={500}
         height={300}
+        priority={false} // mejor practica siempre en true que es el defecto
+        quality={100} // default 75
       />
       <div className={styles.Description__text}>
         <h2>Bring the future today</h2>
