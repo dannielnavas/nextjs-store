@@ -1,8 +1,11 @@
+import styles from "./Hero.module.css";
+
 const Hero = () => {
   return (
-    <div className="hero">
+    <section className={styles.Hero}>
       <h1>Hero</h1>
-    </div>
+      <h2>Sub title</h2>
+    </section>
   );
 };
 
