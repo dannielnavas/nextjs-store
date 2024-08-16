@@ -2,9 +2,15 @@ import { Footer } from "app/Components/shared/Footer";
 import { Header } from "app/Components/shared/Header/Header";
 import "app/sass/globals.sass";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
+import { Raleway } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Lolo Store",
@@ -18,7 +24,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      {/* <body className={inter.className}> */}
+      <body className={raleway.className}>
         <Header />
         {children}
         <Footer />
