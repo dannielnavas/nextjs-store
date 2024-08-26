@@ -27,6 +27,8 @@ export default function RootLayout({
       {/* <body className={inter.className}> */}
       <body className={raleway.className}>
         <Header />
+        {/* <Hero />
+        <Description /> */}
         {children}
         <Footer />
       </body>
