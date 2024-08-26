@@ -1,3 +1,13 @@
+import Image from "next/image";
+import {
+  AwaitedReactNode,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactNode,
+} from "react";
+import styles from "./MainProducts.module.sass";
+
 const getProducts = async () => {
   try {
     const response = await fetch(
@@ -10,22 +20,45 @@ const getProducts = async () => {
         }),
       }
     );
-    const data = await response.json();
-    console.log(data);
-    return data;
+    const { products } = await response.json();
+    return products;
   } catch (error) {
     console.error(error);
   }
 };
 
 const MainProduct = async () => {
-  const product = await getProducts();
-  console.log(product);
-  // console.log(process.env.NEXT_PUBLIC_API_URL);
+  const products = await getProducts();
   return (
-    <div className="main-product">
-      <h1>Main Product</h1>
-    </div>
+    <section className={styles.MainProducts}>
+      <h3>✨ New products released!</h3>
+      <div className={styles.MainProducts__grid}>
+        {products?.map(
+          (product: {
+            images: { src: any }[];
+            id: Key | null | undefined;
+            title:
+              | string
+              | number
+              | bigint
+              | boolean
+              | ReactElement<any, string | JSXElementConstructor<any>>
+              | Iterable<ReactNode>
+              | Promise<AwaitedReactNode>
+              | null
+              | undefined;
+          }) => {
+            const imageSrc = product.images[0].src;
+            return (
+              <article key={product.id}>
+                <p>{product.title}</p>
+                <Image src={imageSrc} fill alt={product.title} loading="eager" />
+              </article>
+            );
+          }
+        )}
+      </div>
+    </section>
   );
 };
 
