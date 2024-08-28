@@ -8,28 +8,9 @@ import {
 } from "react";
 import styles from "./MainProducts.module.sass";
 
-const getProducts = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/admin/api/2023-10/products.json`,
-      {
-        method: "GET",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          "X-Shopify-Access-Token": process.env.API_KEY_SHOPIFY || "",
-        }),
-      }
-    );
-    const { products } = await response.json();
-    console.log(products);
-    return products;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const MainProduct = async () => {
-  const products = await getProducts();
+  const response = await fetch("http://localhost:3000/api");
+  const { products } = await response.json();
   return (
     <section className={styles.MainProducts}>
       <h3>✨ New products released!</h3>
