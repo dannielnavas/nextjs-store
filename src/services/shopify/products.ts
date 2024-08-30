@@ -11,7 +11,6 @@ export const getProducts = async () => {
       }),
     });
     const { products } = await response.json();
-    console.log(products);
     return products;
   } catch (error) {
     console.error(error);
