@@ -25,3 +25,19 @@ export const getCollections = async () => {
     console.error(error);
   }
 };
+
+export const getCollectionProducts = async (collection_id: string) => {
+  try {
+    const response = await fetch(shopifyUrls.collections.products(collection_id), {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": env.API_KEY_SHOPIFY,
+      }),
+    });
+    const { products } = await response.json();
+    return products;
+  } catch (error) {
+    console.error(error);
+  }
+};

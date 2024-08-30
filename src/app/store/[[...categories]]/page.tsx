@@ -1,4 +1,8 @@
 import { ProductsWrapper } from "app/Components/Store/ProductsWrapper";
+import {
+  getCollectionProducts,
+  getCollections,
+} from "app/services/shopify/collections";
 import { getProducts } from "app/services/shopify/products";
 
 interface CategoryProps {
@@ -9,11 +13,20 @@ interface CategoryProps {
 }
 
 export default async function Category(props: CategoryProps) {
-  // Consumo de manera paralela de los productos y las colecciones
-  const products = await getProducts();
-  // const collections = await getCollections();
-
   const { categories } = props.params;
+  // Consumo de manera paralela de los productos y las colecciones
+  let products = [];
+  const collections = await getCollections();
+
+  if (categories?.length > 0) {
+    const selectedCollectionId = collections.find(
+      (collection: { handle: string }) => collection.handle === categories[0]
+    ).id;
+    products = await getCollectionProducts(selectedCollectionId);
+  } else {
+    products = await getProducts();
+  }
+
   // throw new Error("Error");
   return <ProductsWrapper products={products} />;
 }
