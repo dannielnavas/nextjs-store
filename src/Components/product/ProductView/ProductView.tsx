@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styles from "./ProductView.module.sass";
 import { ProductViewItemsOrder } from "./ProductViewItemsOrder";
 interface ProductViewProps {
@@ -6,6 +8,9 @@ interface ProductViewProps {
 }
 
 export const ProductView = ({ product }: ProductViewProps) => {
+  const router = useRouter();
+  if (!product) router.push("/");
+
   return (
     <main className={styles.ProductView}>
       <section className={styles.ProductView__images}>
