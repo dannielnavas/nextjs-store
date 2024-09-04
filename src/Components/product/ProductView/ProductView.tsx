@@ -1,15 +1,16 @@
-"use client";
+// "use client";
+import { SanitizeHTML } from "app/Components/shared/SanitizeHTML/SanitizeHTML";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import styles from "./ProductView.module.sass";
 import { ProductViewItemsOrder } from "./ProductViewItemsOrder";
+
 interface ProductViewProps {
   product: ProductType;
 }
 
 export const ProductView = ({ product }: ProductViewProps) => {
-  const router = useRouter();
-  if (!product) router.push("/");
+  // const router = useRouter();
+  // if (!product) router.push("/");
 
   return (
     <main className={styles.ProductView}>
@@ -26,9 +27,12 @@ export const ProductView = ({ product }: ProductViewProps) => {
       <section className={styles.ProductView__info}>
         <h1 className={styles.ProductView__info__title}>{product.title}</h1>
         <p className={styles.ProductView__info__category}>{product.tags}</p>
-        <p className={styles.ProductView__info__description}>
+        <SanitizeHTML tag="p" className={styles.ProductView__info__description}>
           {product.description}
-        </p>
+        </SanitizeHTML>
+        {/* <p className={styles.ProductView__info__description}>
+          {product.description}
+        </p> */}
         <span className={styles.ProductView__info__price}>$ {product.price}</span>
         <ProductViewItemsOrder maxQuantity={product.quantity} />
       </section>
