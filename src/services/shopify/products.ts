@@ -12,10 +12,14 @@ export const getProducts = async (id?: string): Promise<ProductType[]> => {
         "Content-Type": "application/json",
         "X-Shopify-Access-Token": env.API_KEY_SHOPIFY,
       }),
-      // cache: "no-cache", // no guarda cache
+      // cache: "no-cache", // no guarda cache - no recomendado para datos dinámicos o que cambian constantemente
       // cache: "force-cache" // el usuario debe hacerlo de forma manual
+      // next: {
+      //   revalidate: 10, // valida la cache cada 10 segundos
+      // },
+      cache: "force-cache",
       next: {
-        revalidate: 10, // valida la cache cada 10 segundos
+        tags: ["products"],
       },
     });
     const { products } = await response.json();
