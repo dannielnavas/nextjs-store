@@ -2,4 +2,6 @@ export const env = {
   API_KEY_SHOPIFY: process.env.API_KEY_SHOPIFY || "",
   HOST_SHOPIFY: process.env.HOST_SHOPIFY,
   CACHE_TOKEN: process.env.CACHE_TOKEN,
+  SHOPIFY_GRAPHQL_ENDPOINT: process.env.SHOPIFY_GRAPHQL_ENDPOINT || "",
+  SHOPIFY_STOREFRONT_TOKEN: process.env.SHOPIFY_STOREFRONT_TOKEN || "",
 };
