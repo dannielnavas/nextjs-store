@@ -1,6 +1,8 @@
 "use server";
 import { GraphQLClientSingleton } from "app/graphql";
 import { createUserMutation } from "app/graphql/mutations/createUserMutation";
+import { createAccessToken } from "app/utils/auth/createAccessToken";
+import { redirect } from "next/navigation";
 
 // corre en el servidor
 
@@ -15,6 +17,24 @@ export const handleCreateUser = async (formData: FormData) => {
       acceptsMarketing: true,
     },
   };
-  const data = await graphqlCliente.request(createUserMutation, variables);
+  const { customerCreate } = await graphqlCliente.request<{ customerCreate: any }>(
+    createUserMutation,
+    variables
+  );
+  const { customer, customerAccessToken } = customerCreate;
+
+  const data = {
+    customer,
+    customerAccessToken,
+  };
+
   console.log(data);
+
+  if (customer.firstName) {
+    await createAccessToken(
+      formDataObject.email as string,
+      formDataObject.password as string
+    );
+    redirect("/store");
+  }
 };
