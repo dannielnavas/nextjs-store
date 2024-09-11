@@ -25,4 +25,5 @@ export const createAccessToken = async (email: string, password: string) => {
       httpOnly: true,
     });
   }
+  return accessToken;
 };
