@@ -24,6 +24,7 @@ export const ShoppingCart = () => {
               {cartItem?.title} - {cartItem?.quantity}
             </p>
           ))}
+          <button className={styles.ShoppingCart__buyButton}>Buy</button>
         </div>
       )}
     </button>
