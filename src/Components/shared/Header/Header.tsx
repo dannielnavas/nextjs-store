@@ -1,6 +1,7 @@
 // import { cookies } from "next/headers";
 import { validateAccessToken } from "app/utils/auth/validateAccessToken";
 import Link from "next/link";
+import { ShoppingCart } from "../ShoopingCart";
 import styles from "./Header.module.css";
 
 const Header = async () => {
@@ -31,6 +32,7 @@ const Header = async () => {
             <button>Login</button>
           </Link>
         )}
+        <ShoppingCart />
       </nav>
     </header>
   );
