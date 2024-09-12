@@ -25,14 +25,24 @@ const Header = async () => {
             <li>test</li>
           </Link>
         </ul>
-        {customer?.firstName ? (
-          <p>Hola! {customer?.firstName}</p>
-        ) : (
-          <Link href="/login">
-            <button>Login</button>
-          </Link>
-        )}
-        <ShoppingCart />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            columnGap: "1rem",
+          }}
+        >
+          {customer?.firstName ? (
+            <p>Hola! {customer?.firstName}</p>
+          ) : (
+            <Link href="/login">
+              <button>Login</button>
+            </Link>
+          )}
+          <ShoppingCart />
+        </div>
       </nav>
     </header>
   );
