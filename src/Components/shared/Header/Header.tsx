@@ -1,8 +1,10 @@
 // import { cookies } from "next/headers";
 import { validateAccessToken } from "app/utils/auth/validateAccessToken";
 import Link from "next/link";
-import { ShoppingCart } from "../ShoopingCart";
+
 import styles from "./Header.module.css";
+
+import dynamic from "next/dynamic";
 
 const Header = async () => {
   // const cookiesStore = cookies();
@@ -10,6 +12,7 @@ const Header = async () => {
   // const token = cookiesStore.get("accessToken")?.value;
 
   const customer = await validateAccessToken();
+  const NoSSRShopingCart = dynamic(() => import("../ShoopingCart"), { ssr: false });
 
   return (
     <header>
@@ -41,7 +44,7 @@ const Header = async () => {
               <button>Login</button>
             </Link>
           )}
-          <ShoppingCart />
+          <NoSSRShopingCart />
         </div>
       </nav>
     </header>
