@@ -15,7 +15,6 @@ type ProductType = {
 };
 
 type CartItem = {
-  [x: string]: string | StaticImport;
   title: string;
   price: number;
   quantity: number;
