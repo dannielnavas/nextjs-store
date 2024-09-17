@@ -17,19 +17,19 @@ export async function generateMetadata({ searchParams }: ProductPageProps) {
   const id = searchParams.id;
 
   const products = await getProducts(id);
-  const product = products[0];
+  const product = products && products.length > 0 ? products[0] : null;
 
   return {
-    title: product.title,
-    description: product.description,
-    keywords: product.tags,
+    title: product?.title || "Default Title",
+    description: product?.description || "Default Description",
+    keywords: product?.tags || [],
     openGraph: {
-      title: product.title,
-      description: product.description,
+      title: product?.title || "Default Title",
+      description: product?.description || "Default Description",
       images: [
         {
-          url: product.image,
-          alt: product.title,
+          url: product?.image || "/default-image.jpg",
+          alt: product?.title || "Default Title",
         },
       ],
     },
@@ -45,9 +45,13 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
   const id = searchParams.id;
 
   const products = await getProducts(id);
-  const product = products[0];
+  const product = products && products.length > 0 ? products[0] : null;
 
   if (!id) redirect("/store"); // con server component
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return <ProductView product={product} />;
 }

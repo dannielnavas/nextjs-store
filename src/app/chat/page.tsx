@@ -7,7 +7,7 @@ export default async function ChatPage() {
 
   console.log(products);
 
-  const productsTitles = products.map((product) => product.title);
+  const productsTitles = products ? products.map((product) => product.title) : [];
 
   console.log(productsTitles);
 

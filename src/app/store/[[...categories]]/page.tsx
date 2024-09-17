@@ -24,7 +24,7 @@ export default async function Category(props: CategoryProps) {
     ).id;
     products = await getCollectionProducts(selectedCollectionId);
   } else {
-    products = await getProducts();
+    products = (await getProducts()) || [];
   }
 
   // throw new Error("Error");

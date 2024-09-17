@@ -15,6 +15,8 @@ type ProductType = {
 };
 
 type CartItem = {
+  merchandiseId: string;
+  image: string;
   title: string;
   price: number;
   quantity: number;

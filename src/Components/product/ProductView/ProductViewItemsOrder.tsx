@@ -21,9 +21,11 @@ export const ProductViewItemsOrder = ({
     event.preventDefault();
     addToCart({
       title: product.title,
+      image: product.image,
       price: product.price,
       quantity: counter,
       id: product.id,
+      merchandiseId: product.handle,
     });
   };
 
