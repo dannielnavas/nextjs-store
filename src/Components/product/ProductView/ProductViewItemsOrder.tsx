@@ -25,7 +25,7 @@ export const ProductViewItemsOrder = ({
       price: product.price,
       quantity: counter,
       id: product.id,
-      merchandiseId: product.handle,
+      merchandiseId: product.gql_id,
     });
   };
 
