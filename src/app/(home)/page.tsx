@@ -3,6 +3,8 @@ import { Metadata } from "next";
 
 // "use cliente"; // Para que se ejecute en el cliente este y los anidados sobre este
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Lolo Store",
   description: "Welcome to Lolo store",
